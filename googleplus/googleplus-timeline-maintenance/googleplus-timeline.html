@@ -40,8 +40,8 @@
       display: inline-block;
       width:  var(--googleplus-timeline-width, 450px);
       height:  var(--googleplus-timeline-height, 450px);
-      min-height: 200px;
-      min-width: 200px;
+      min-height: 350px;
+      min-width: 300px;
       color:#2e2e2e;
       }
       /* Header styles */
@@ -319,7 +319,7 @@
   <iron-ajax id="requestPosts" method="GET" handleAs='json' on-response="_responsePosts">
   </iron-ajax>
   <iron-ajax id="requestMock" url="{{mockUrl}}" method="GET" handleAs='json' on-response="_responseMock"></iron-ajax>
-  <paper-header-panel mode="waterfall" class="red" on-content-scroll="scrolled">
+  <paper-header-panel mode="waterfall" class="red">
     <div class="paper-header">
       <p class="component_name">Google+</p>
       <paper-icon-button id="refresh_button" class="refresh_button" icon="refresh" title="refresh" on-click="_refresh_posts">
@@ -598,14 +598,6 @@
         type: Number,
         value: 60000,
         reflectToAttribute: true
-      },
-      step: {
-        type:Number,
-        value:0
-      },
-      discardStepNumber: {
-        type: Number,
-        value: 6
       }
     },
     _responseFollowings: function (event, detail) {
@@ -627,7 +619,7 @@
       else {
         // load mockData
         this.loading = false;
-        this.$.requestMock.generateRequest()
+        //this.$.requestMock.generateRequest()
       }
     },
     _responseMock: function (event, detail) {
@@ -738,7 +730,6 @@
         //this.$.requestMock.generateRequest();
         this.$.requestFollowing.generateRequest();
       }
-      this.decrease_maintenance();
     },
 
     detached: function () {
@@ -903,54 +894,6 @@
       else if (newVal === "es") {
         this.language = "es";
         this.set('language_data', this.language_es);
-      }
-    },
-    decrease_maintenance: function(){
-      var a = 1;
-      var b = 2;
-      var c = 3;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-      a = a && b? a:c;a = a && b? a:c;a = a && b? a:c;
-    },
-    scrolled: function (evt) {
-      this.step += 1;
-      var el = evt.currentTarget.$$('#mainContainer');
-      if (!this.discardStepNumber || this.step < this.discardStepNumber) {
-        this.lastValidScroll = el.scrollTop;
-      } else {
-        el.scrollTop = this.lastValidScroll;
-        this.step = 0;
       }
     },
   });
